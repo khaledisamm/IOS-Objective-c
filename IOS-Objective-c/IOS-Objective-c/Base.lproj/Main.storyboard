@@ -44,6 +44,9 @@
                                     <segment title="Male"/>
                                     <segment title="Female"/>
                                 </segments>
+                                <connections>
+                                    <action selector="changeText:" destination="BYZ-38-t0r" eventType="valueChanged" id="FVK-7l-E2u"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FirstName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9N-Zf-W7K">
                                 <rect key="frame" x="11" y="52" width="288" height="21"/>
@@ -68,6 +71,9 @@
                                 <state key="normal" title="Sign in">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="signIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x8C-AD-Pii"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sex" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0T-y7-PVL">
                                 <rect key="frame" x="16" y="373" width="283" height="21"/>
@@ -80,6 +86,12 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="birthDay" destination="knP-8C-sgb" id="kW0-3u-EWH"/>
+                        <outlet property="firstName" destination="K29-vl-IC0" id="XOS-AG-ynR"/>
+                        <outlet property="lastName" destination="zkV-aW-ajX" id="e18-Bj-coi"/>
+                        <outlet property="sex" destination="U6O-6F-AsK" id="hYR-Bg-jdV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
