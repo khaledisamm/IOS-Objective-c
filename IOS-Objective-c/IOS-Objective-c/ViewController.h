@@ -10,13 +10,5 @@
 
 @interface ViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextField *firstName;
-@property (weak, nonatomic) IBOutlet UITextField *lastName;
-@property (weak, nonatomic) IBOutlet UIDatePicker *birthDay;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *sex;
-
-
-- (IBAction)signIn:(id)sender;
-- (IBAction)changeText:(id)sender;
 @end
 

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20A9B0BC1B035814005A530C /* DisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A9B0BB1B035814005A530C /* DisplayViewController.m */; };
+		20A9B0C01B03856B005A530C /* RemoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A9B0BF1B03856B005A530C /* RemoteService.m */; };
+		20A9B0C41B0390CC005A530C /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A9B0C31B0390CC005A530C /* Profile.m */; };
+		20E6755E1B049001007363A7 /* AddProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E6755D1B049001007363A7 /* AddProfileViewController.m */; };
 		20F2180A1B020C9D0078CF28 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F218091B020C9D0078CF28 /* main.m */; };
 		20F2180D1B020C9D0078CF28 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F2180C1B020C9D0078CF28 /* AppDelegate.m */; };
 		20F218101B020C9D0078CF28 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F2180F1B020C9D0078CF28 /* ViewController.m */; };
@@ -44,6 +48,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20A9B0BA1B035814005A530C /* DisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayViewController.h; sourceTree = "<group>"; };
+		20A9B0BB1B035814005A530C /* DisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayViewController.m; sourceTree = "<group>"; };
+		20A9B0BE1B03856A005A530C /* RemoteService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteService.h; sourceTree = "<group>"; };
+		20A9B0BF1B03856B005A530C /* RemoteService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteService.m; sourceTree = "<group>"; };
+		20A9B0C21B0390CC005A530C /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
+		20A9B0C31B0390CC005A530C /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		20E6755C1B049001007363A7 /* AddProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProfileViewController.h; sourceTree = "<group>"; };
+		20E6755D1B049001007363A7 /* AddProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProfileViewController.m; sourceTree = "<group>"; };
 		20F218041B020C9D0078CF28 /* IOS-Objective-c.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS-Objective-c.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F218081B020C9D0078CF28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20F218091B020C9D0078CF28 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -113,12 +125,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		20F217FB1B020C9D0078CF28 = {
+		20A9B0BD1B038536005A530C /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				20A9B0BE1B03856A005A530C /* RemoteService.h */,
+				20A9B0BF1B03856B005A530C /* RemoteService.m */,
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
+		20A9B0C11B0390AE005A530C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				20A9B0C21B0390CC005A530C /* Profile.h */,
+				20A9B0C31B0390CC005A530C /* Profile.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		20E675581B048E0B007363A7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				20E6755C1B049001007363A7 /* AddProfileViewController.h */,
+				20E6755D1B049001007363A7 /* AddProfileViewController.m */,
+				20A9B0BA1B035814005A530C /* DisplayViewController.h */,
+				20A9B0BB1B035814005A530C /* DisplayViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		20E6755F1B049352007363A7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				20F218111B020C9D0078CF28 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		20E675601B0493B9007363A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				20F218311B023A800078CF28 /* AFNetworking */,
 				20F218451B023A800078CF28 /* UIKit+AFNetworking */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		20F217FB1B020C9D0078CF28 = {
+			isa = PBXGroup;
+			children = (
 				20F218061B020C9D0078CF28 /* IOS-Objective-c */,
+				20E675601B0493B9007363A7 /* Frameworks */,
 				20F218201B020C9D0078CF28 /* IOS-Objective-cTests */,
 				20F218051B020C9D0078CF28 /* Products */,
 			);
@@ -136,11 +193,14 @@
 		20F218061B020C9D0078CF28 /* IOS-Objective-c */ = {
 			isa = PBXGroup;
 			children = (
+				20A9B0C11B0390AE005A530C /* Model */,
+				20E6755F1B049352007363A7 /* View */,
+				20E675581B048E0B007363A7 /* Controller */,
+				20A9B0BD1B038536005A530C /* Store */,
 				20F2180B1B020C9D0078CF28 /* AppDelegate.h */,
 				20F2180C1B020C9D0078CF28 /* AppDelegate.m */,
 				20F2180E1B020C9D0078CF28 /* ViewController.h */,
 				20F2180F1B020C9D0078CF28 /* ViewController.m */,
-				20F218111B020C9D0078CF28 /* Main.storyboard */,
 				20F218141B020C9D0078CF28 /* Images.xcassets */,
 				20F218161B020C9D0078CF28 /* LaunchScreen.xib */,
 				20F218071B020C9D0078CF28 /* Supporting Files */,
@@ -328,13 +388,16 @@
 				20F218641B023A800078CF28 /* UIImageView+AFNetworking.m in Sources */,
 				20F218101B020C9D0078CF28 /* ViewController.m in Sources */,
 				20F218581B023A800078CF28 /* AFHTTPRequestOperationManager.m in Sources */,
+				20A9B0BC1B035814005A530C /* DisplayViewController.m in Sources */,
 				20F218651B023A800078CF28 /* UIProgressView+AFNetworking.m in Sources */,
 				20F2185A1B023A800078CF28 /* AFNetworkReachabilityManager.m in Sources */,
+				20A9B0C01B03856B005A530C /* RemoteService.m in Sources */,
 				20F2185E1B023A800078CF28 /* AFURLResponseSerialization.m in Sources */,
 				20F2185C1B023A800078CF28 /* AFURLConnectionOperation.m in Sources */,
 				20F218631B023A800078CF28 /* UIButton+AFNetworking.m in Sources */,
 				20F218611B023A800078CF28 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				20F2185B1B023A800078CF28 /* AFSecurityPolicy.m in Sources */,
+				20A9B0C41B0390CC005A530C /* Profile.m in Sources */,
 				20F218661B023A800078CF28 /* UIRefreshControl+AFNetworking.m in Sources */,
 				20F218671B023A800078CF28 /* UIWebView+AFNetworking.m in Sources */,
 				20F218591B023A800078CF28 /* AFHTTPSessionManager.m in Sources */,
@@ -343,6 +406,7 @@
 				20F218601B023A800078CF28 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				20F2185F1B023A800078CF28 /* AFURLSessionManager.m in Sources */,
 				20F2180D1B020C9D0078CF28 /* AppDelegate.m in Sources */,
+				20E6755E1B049001007363A7 /* AddProfileViewController.m in Sources */,
 				20F2180A1B020C9D0078CF28 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,6 +606,7 @@
 				20F218291B020C9D0078CF28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		20F2182A1B020C9D0078CF28 /* Build configuration list for PBXNativeTarget "IOS-Objective-cTests" */ = {
 			isa = XCConfigurationList;
@@ -550,6 +615,7 @@
 				20F2182C1B020C9D0078CF28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
