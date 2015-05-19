@@ -12,5 +12,7 @@
 @interface RemoteService : NSObject
 
 //+(RemoteService*) sharedRemoteService;
--(void) submitProfile:(Profile*)profile;
+-(void) submitProfile:(Profile*)profile callback:(void (^)(id data))completionBlock;
+-(void)displayProfile:(void (^)(id data))completionBlock;
+
 @end

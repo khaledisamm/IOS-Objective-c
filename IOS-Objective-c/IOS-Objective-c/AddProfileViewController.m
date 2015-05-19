@@ -10,6 +10,9 @@
 #import "AFNetworking.h"
 #import "Profile.h"
 #import "RemoteService.h"
+#import "MBProgressHUD.h"
+#import "DisplayProfileTableViewController.h"
+
 
 @interface AddProfileViewController ()
 
@@ -53,10 +56,20 @@ NSString *sexVar = @"male";
     profile.DateInput =[formatter stringFromDate:birthDayInput];
     
     profile.sexInput = sexVar;
+    MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = NSLocalizedString(@"submit.in.progress", nil);
     
     RemoteService *remoteService = [[RemoteService alloc] init];
     
-    [remoteService submitProfile:profile];
+    [remoteService submitProfile:profile callback:^(id data) {
+        [hud hide:YES];
+        if(data)
+            [self.navigationController popViewControllerAnimated:YES];
+
+        DisplayProfileTableViewController *tab =[[DisplayProfileTableViewController alloc] init];
+        [tab.tableView reloadData];
+    }];
+
 }
 
 @end

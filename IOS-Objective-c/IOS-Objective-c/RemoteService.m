@@ -8,50 +8,46 @@
 
 #import "RemoteService.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "DisplayProfileTableViewController.h"
 
 
 @implementation RemoteService
-{
-    AFHTTPRequestOperationManager* _operationManager;
-}
 
-//+(RemoteService*) sharedRemoteService
-//{
-//    // structure used to test whether the block has completed or not
-//    static dispatch_once_t p = 0;
-//    
-//    // initialize sharedObject as nil (first call only)
-//    __strong static id _sharedObject = nil;
-//    
-//    // executes a block object once and only once for the lifetime of an application
-//    dispatch_once(&p, ^
-//    {
-//        NSString* webServerURL = [NSString stringWithFormat:@"http://%@:9000",@"192.168.1.2"];
-//        _sharedObject = [[RemoteService alloc] initWithBaseURL:[NSURL URLWithString:webServerURL]];
-//    });
-//    // returns the same object each time
-//    return _sharedObject;
-//}
-
--(void) submitProfile:(Profile*)profile
+-(void) submitProfile:(Profile*)profile callback:(void (^)(id data))completionBlock
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:@"http://192.168.1.2/ios/public/profiles" parameters:[profile toDictionary]
           success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         NSLog(@"JSON: %@", responseObject);
-//         DLog(@"%@",responseObject[@"id"]);
-//         profile.id = [responseObject[@"id"] intValue];
-//         DLog(@"%ld",(long)profile.id);
-//         [ProfileService saveProfile:profile];
-//         completionBlock(profile);
+         completionBlock(responseObject);
      }
           failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
          NSLog(@"Error: %@", error);
-//         completionBlock(nil);
      }];
 }
 
+-(void)displayProfile:(void (^)(id data))completionBlock
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    [manager GET:@"http://192.168.1.2/ios/public/profiles"
+      parameters:nil
+     
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             
+            completionBlock(responseObject);
+
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Error: %@", error);
+             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Data    "
+                                                                 message:[error localizedDescription]
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"Ok"
+                                                       otherButtonTitles:nil];
+             [alertView show];
+         }
+     ];
+}
 @end
