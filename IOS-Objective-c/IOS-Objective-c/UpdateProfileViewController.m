@@ -25,7 +25,14 @@
     // Do any additional setup after loading the view.
     firstName.text = firstNameUp;
     lastName.text = lastNameUp;
-  //  birthDay.date = birthDayUp;
+   // birthDay.date = "2014-05-19";
+    
+    NSDate *birthDayInput = [birthDay date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    profile.DateInput =[formatter stringFromDate:birthDayInput];
+    
+    
     
     
 }
@@ -46,6 +53,12 @@
 */
 
 - (IBAction)changeText:(id)sender {
+    if (sex.selectedSegmentIndex == 0) {
+        sexUp = @"male";
+    }
+    if (sex.selectedSegmentIndex == 1) {
+        sexUp = @"female";
+    }
 }
 
 - (IBAction)update:(id)sender {
