@@ -26,14 +26,21 @@
     firstName.text = firstNameUp;
     lastName.text = lastNameUp;
 
-    NSString *kiki = @"2014-05-19";
-    NSLog(@"%@",kiki);
+    NSString *stringDate = (NSString *)birthDayUp;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *sosuso = [formatter dateFromString:kiki];
-    birthDay.date = sosuso;
-
-
+    NSDate *dateUp = [formatter dateFromString:stringDate];
+    if (dateUp) {
+        birthDay.date = dateUp;
+    }
+    
+    NSString *sexVar = (NSString *)sexUp;
+    if ([sexVar  isEqual: @"male"]) {
+        sex.selectedSegmentIndex = 0;
+    }
+    else {
+        sex.selectedSegmentIndex = 1;
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
