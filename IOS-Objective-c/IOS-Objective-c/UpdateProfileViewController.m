@@ -25,18 +25,16 @@
     // Do any additional setup after loading the view.
     firstName.text = firstNameUp;
     lastName.text = lastNameUp;
-   // birthDay.date = "2014-05-19";
-    
-    NSDate *birthDayInput = [birthDay date];
+
+    NSString *kiki = @"2014-05-19";
+    NSLog(@"%@",kiki);
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
-    profile.DateInput =[formatter stringFromDate:birthDayInput];
-    
-    
-    
-    
-}
+    NSDate *sosuso = [formatter dateFromString:kiki];
+    birthDay.date = sosuso;
 
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

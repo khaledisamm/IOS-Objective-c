@@ -74,7 +74,7 @@ id profiles;
         update.firstNameUp = [profileData valueForKey:@"firstName"];
         update.lastNameUp = [profileData valueForKey:@"lastName"];
         update.birthDayUp = [profileData valueForKey:@"birthDay"];
-        NSLog(@"%@",[profileData valueForKey:@"birthDay"]);
+        NSLog(@"%@",update.birthDayUp);
         update.sexUp = [profileData valueForKey:@"sex"];
     }
 }
