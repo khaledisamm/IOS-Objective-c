@@ -25,7 +25,7 @@
     // Do any additional setup after loading the view.
     firstName.text = firstNameUp;
     lastName.text = lastNameUp;
-   // birthDay.date = birthDayUp;
+  //  birthDay.date = birthDayUp;
     
     
 }

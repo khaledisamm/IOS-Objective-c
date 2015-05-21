@@ -63,6 +63,21 @@ id profiles;
     return cell;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"update"])
+    {
+        NSIndexPath *indexPath = (NSIndexPath *)sender;
+        
+        UpdateProfileViewController *update = [segue destinationViewController];
+        Profile* profileData = [profiles objectAtIndex:indexPath.row];
+        
+        update.firstNameUp = [profileData valueForKey:@"firstName"];
+        update.lastNameUp = [profileData valueForKey:@"lastName"];
+        update.birthDayUp = [profileData valueForKey:@"birthDay"];
+        update.sexUp = [profileData valueForKey:@"sex"];
+    }
+}
+
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     //NSLog(@"I Tapped:%i",indexPath.row);
@@ -73,14 +88,6 @@ id profiles;
     
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"update"]){
-        
-        UpdateProfileViewController *update = [segue destinationViewController];
-        
-        update.firstNameUp = @"kiki";
-    }
-}
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

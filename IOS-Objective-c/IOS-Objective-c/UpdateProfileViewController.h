@@ -22,6 +22,7 @@
 @property (nonatomic, weak) NSData *birthDayUp;
 @property (nonatomic, weak) NSString *sexUp;
 
+
 - (IBAction)changeText:(id)sender;
 - (IBAction)update:(id)sender;
 @end
