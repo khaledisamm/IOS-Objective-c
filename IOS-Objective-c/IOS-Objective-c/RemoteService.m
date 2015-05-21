@@ -50,4 +50,36 @@
          }
      ];
 }
+
+-(void) deleteProfile:(Profile*)profile completion:(void (^)(Profile* profileResp))completionBlock
+{
+    //TODO : submit to server
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    NSString *url=[NSString stringWithFormat:@"http://192.168.1.2/ios/public/profiles/%ld", (long)profile.id];
+    [manager DELETE:url parameters:NULL
+            success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         completionBlock(responseObject);
+     }
+            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"Error: %@", error);
+     }];
+}
+
+-(void) updateProfile:(Profile*)profile completion:(void (^)(Profile* profileResp))completionBlock
+{
+    //TODO : submit to server
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    NSString *url=[NSString stringWithFormat:@"http://192.168.1.2/ios/public/profiles/%ld", (long)profile.id];
+    [manager PUT:url parameters:NULL
+            success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         completionBlock(responseObject);
+     }
+            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"Error: %@", error);
+            }];
+}
 @end

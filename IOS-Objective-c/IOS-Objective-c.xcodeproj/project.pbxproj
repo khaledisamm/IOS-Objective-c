@@ -13,6 +13,7 @@
 		2001B1BF1B0A584A00656ECB /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2001B1BE1B0A584A00656ECB /* MBProgressHUD.m */; };
 		20A9B0C01B03856B005A530C /* RemoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A9B0BF1B03856B005A530C /* RemoteService.m */; };
 		20A9B0C41B0390CC005A530C /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A9B0C31B0390CC005A530C /* Profile.m */; };
+		20B44F1F1B0CE31B00BEB7F6 /* UpdateProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B44F1E1B0CE31B00BEB7F6 /* UpdateProfileViewController.m */; };
 		20E6755E1B049001007363A7 /* AddProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E6755D1B049001007363A7 /* AddProfileViewController.m */; };
 		20E675631B04FDAF007363A7 /* DisplayProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E675621B04FDAF007363A7 /* DisplayProfileTableViewController.m */; };
 		20F2180A1B020C9D0078CF28 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F218091B020C9D0078CF28 /* main.m */; };
@@ -62,6 +63,8 @@
 		20A9B0BF1B03856B005A530C /* RemoteService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteService.m; sourceTree = "<group>"; };
 		20A9B0C21B0390CC005A530C /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		20A9B0C31B0390CC005A530C /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		20B44F1D1B0CE31B00BEB7F6 /* UpdateProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateProfileViewController.h; sourceTree = "<group>"; };
+		20B44F1E1B0CE31B00BEB7F6 /* UpdateProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateProfileViewController.m; sourceTree = "<group>"; };
 		20E6755D1B049001007363A7 /* AddProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProfileViewController.m; sourceTree = "<group>"; };
 		20E675611B04FDAF007363A7 /* DisplayProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayProfileTableViewController.h; sourceTree = "<group>"; };
 		20E675621B04FDAF007363A7 /* DisplayProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayProfileTableViewController.m; sourceTree = "<group>"; };
@@ -171,6 +174,8 @@
 				20E6755D1B049001007363A7 /* AddProfileViewController.m */,
 				20E675611B04FDAF007363A7 /* DisplayProfileTableViewController.h */,
 				20E675621B04FDAF007363A7 /* DisplayProfileTableViewController.m */,
+				20B44F1D1B0CE31B00BEB7F6 /* UpdateProfileViewController.h */,
+				20B44F1E1B0CE31B00BEB7F6 /* UpdateProfileViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -426,6 +431,7 @@
 				20F218661B023A800078CF28 /* UIRefreshControl+AFNetworking.m in Sources */,
 				20F218671B023A800078CF28 /* UIWebView+AFNetworking.m in Sources */,
 				20F218591B023A800078CF28 /* AFHTTPSessionManager.m in Sources */,
+				20B44F1F1B0CE31B00BEB7F6 /* UpdateProfileViewController.m in Sources */,
 				2001B1BF1B0A584A00656ECB /* MBProgressHUD.m in Sources */,
 				20F218621B023A800078CF28 /* UIAlertView+AFNetworking.m in Sources */,
 				20F2185D1B023A800078CF28 /* AFURLRequestSerialization.m in Sources */,

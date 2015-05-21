@@ -9,17 +9,25 @@
 #import "DisplayProfileTableViewController.h"
 #import "Profile.h"
 #import "RemoteService.h"
+#import "UpdateProfileViewController.h"
 
 @interface DisplayProfileTableViewController ()
 
 @end
 
 @implementation DisplayProfileTableViewController
+
+
 NSInteger num = 10;
 id profiles;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
     RemoteService *service = [[RemoteService alloc] init];
     [service displayProfile:^(id data) {
         profiles = data;
@@ -55,26 +63,50 @@ id profiles;
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    //NSLog(@"I Tapped:%i",indexPath.row);
+    [self performSegueWithIdentifier:@"update" sender:indexPath];
 
-/*
+    Profile* profileData = [profiles objectAtIndex:indexPath.row];
+    NSLog(@"%@",[profileData valueForKey:@"firstName"]);
+    
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"update"]){
+        
+        UpdateProfileViewController *update = [segue destinationViewController];
+        
+        update.firstNameUp = @"kiki";
+    }
+}
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSLog(@"%@", [profiles objectAtIndex:indexPath.row]);
+        
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        Profile* profile = [profiles objectAtIndex:indexPath.row];
+        NSLog(@"%@", profile);
+        RemoteService *delete = [[RemoteService alloc] init];
+        [delete deleteProfile:profile completion:NULL];
+        [self.tableView reloadData];
+        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+       
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
 /*
 // Override to support rearranging the table view.

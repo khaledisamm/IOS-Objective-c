@@ -45,7 +45,7 @@ NSString *sexVar = @"male";
 }
 
 - (IBAction)signIn:(id)sender {
-    Profile *profile = profile = [[Profile alloc] init];
+    Profile *profile = [[Profile alloc] init];
 
     profile.firstnameInput = firstName.text;
     profile.lastnameInput = lastName.text;
@@ -56,6 +56,7 @@ NSString *sexVar = @"male";
     profile.DateInput =[formatter stringFromDate:birthDayInput];
     
     profile.sexInput = sexVar;
+    
     MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = NSLocalizedString(@"submit.in.progress", nil);
     
@@ -66,8 +67,6 @@ NSString *sexVar = @"male";
         if(data)
             [self.navigationController popViewControllerAnimated:YES];
 
-        DisplayProfileTableViewController *tab =[[DisplayProfileTableViewController alloc] init];
-        [tab.tableView reloadData];
     }];
 
 }
