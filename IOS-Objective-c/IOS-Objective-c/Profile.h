@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 
-@interface Profile : NSObject
+@interface Profile : RLMObject
 
 @property NSInteger id;
 @property NSString* firstnameInput;

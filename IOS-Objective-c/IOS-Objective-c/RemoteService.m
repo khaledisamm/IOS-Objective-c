@@ -9,6 +9,7 @@
 #import "RemoteService.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "DisplayProfileTableViewController.h"
+#import "ProfileService.h"
 
 
 @implementation RemoteService
@@ -20,6 +21,7 @@
     [manager POST:@"http://192.168.1.2/ios/public/profiles" parameters:[profile toDictionary]
           success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
+         //[ProfileService saveProfile:profile];
          completionBlock(responseObject);
      }
           failure:
@@ -41,7 +43,7 @@
 
          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
-             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Data    "
+             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Data"
                                                                  message:[error localizedDescription]
                                                                 delegate:nil
                                                        cancelButtonTitle:@"Ok"
@@ -60,6 +62,7 @@
     [manager DELETE:url parameters:NULL
             success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
+         [ProfileService deleteProfile:profileId];
          completionBlock(responseObject);
      }
             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -75,6 +78,7 @@
     [manager PUT:url parameters:[profile toDictionary]
           success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
+         [ProfileService saveProfile:profile];
          completionBlock(responseObject);
      }
           failure:

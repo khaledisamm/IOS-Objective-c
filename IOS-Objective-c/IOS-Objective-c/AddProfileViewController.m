@@ -56,7 +56,7 @@ NSString *sexVar = @"male";
     profile.DateInput =[formatter stringFromDate:birthDayInput];
     
     profile.sexInput = sexVar;
-    
+    NSLog(@"%@",profile.sexInput);
     MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = NSLocalizedString(@"submit.in.progress", nil);
     

@@ -12,6 +12,11 @@
 
 @synthesize firstnameInput, lastnameInput, DateInput, sexInput;
 
++(NSString*) primaryKey
+{
+    return @"id";
+}
+
 +(NSDictionary*) defaultPropertyValues
 {
     return

@@ -10,6 +10,7 @@
 #import "Profile.h"
 #import "RemoteService.h"
 #import "UpdateProfileViewController.h"
+#import "ProfileService.h"
 
 @interface DisplayProfileTableViewController ()
 
@@ -59,8 +60,21 @@ id profiles;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    id name = [profiles valueForKey:@"firstName"];
-    cell.textLabel.text = [name objectAtIndex:indexPath.row];
+    
+    RLMResults *profile =[ProfileService displayProfile];
+    
+    if ([profile count]) {
+        id name = [profile valueForKey:@"firstName"];
+        cell.textLabel.text = [name objectAtIndex:indexPath.row];
+        NSLog(@"Realm");
+    }
+    else{
+        id name = [profiles valueForKey:@"firstName"];
+        cell.textLabel.text = [name objectAtIndex:indexPath.row];
+        NSLog(@"Serveur");
+    }
+    
+    
     return cell;
 }
 
