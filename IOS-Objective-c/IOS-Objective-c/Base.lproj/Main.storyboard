@@ -218,7 +218,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="signIn:" destination="dPW-pC-bpz" eventType="touchUpInside" id="Opu-6R-PDy"/>
                                     <action selector="update:" destination="dPW-pC-bpz" eventType="touchUpInside" id="tfu-V2-HWC"/>
                                 </connections>
                             </button>

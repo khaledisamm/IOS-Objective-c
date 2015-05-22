@@ -14,7 +14,7 @@
 //+(RemoteService*) sharedRemoteService;
 -(void) submitProfile:(Profile*)profile callback:(void (^)(id data))completionBlock;
 -(void)displayProfile:(void (^)(id data))completionBlock;
--(void) deleteProfile:(Profile*)profile completion:(void (^)(Profile* profileResp))completionBlock;
--(void) updateProfile:(Profile*)profile completion:(void (^)(Profile* profileResp))completionBlock;
+-(void) deleteProfile:(NSInteger)profileId completion:(void (^)(id data))completionBlock;
+-(void) updateProfile:(Profile*)profile callback:(void (^)(id data))completionBlock;
 
 @end

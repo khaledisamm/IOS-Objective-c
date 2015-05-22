@@ -18,24 +18,26 @@
 @end
 
 @implementation UpdateProfileViewController
-@synthesize firstName, lastName, birthDay, sex, firstNameUp, lastNameUp, birthDayUp, sexUp;
+@synthesize profileUp, firstName, lastName, birthDay, sex;
 
+NSString *sexVal;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    firstName.text = firstNameUp;
-    lastName.text = lastNameUp;
 
-    NSString *stringDate = (NSString *)birthDayUp;
+    firstName.text = [profileUp valueForKey:@"firstName"];
+    lastName.text = [profileUp valueForKey:@"lastName"];
+
+
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *dateUp = [formatter dateFromString:stringDate];
+    NSDate *dateUp = [formatter dateFromString:(NSString *)[profileUp valueForKey:@"birthDay"]];
     if (dateUp) {
         birthDay.date = dateUp;
     }
     
-    NSString *sexVar = (NSString *)sexUp;
-    if ([sexVar  isEqual: @"male"]) {
+    sexVal = (NSString *)[profileUp valueForKey:@"sex"];
+    if ([sexVal  isEqual: @"male"]) {
         sex.selectedSegmentIndex = 0;
     }
     else {
@@ -59,27 +61,36 @@
 
 - (IBAction)changeText:(id)sender {
     if (sex.selectedSegmentIndex == 0) {
-        sexUp = @"male";
+        sexVal = @"male";
     }
     if (sex.selectedSegmentIndex == 1) {
-        sexUp = @"female";
+        sexVal = @"female";
     }
 }
 
 - (IBAction)update:(id)sender {
     
     Profile *profile = [[Profile alloc] init];
-    RemoteService *remoteService = [[RemoteService alloc] init];
-    
+    profile.id=[[profileUp valueForKey:@"id"] intValue];
+    profile.firstnameInput=firstName.text;
+    profile.lastnameInput = lastName.text;
+    NSDate *birthDayInput = [birthDay date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    profile.DateInput =[formatter stringFromDate:birthDayInput];
+    profile.sexInput = sexVal;
+
     MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = NSLocalizedString(@"submit.in.progress", nil);
 
-    [remoteService updateProfile:profile completion:^(Profile *profileResp) {
+    RemoteService *remoteService = [[RemoteService alloc] init];
+    
+    [remoteService updateProfile:profile callback:^(id data) {
         [hud hide:YES];
-        if(profileResp)
+        if(data)
             [self.navigationController popViewControllerAnimated:YES];
     }];
-
+//
 
 
 }

@@ -10,7 +10,7 @@
 
 @implementation Profile
 
-
+@synthesize firstnameInput, lastnameInput, DateInput, sexInput;
 
 +(NSDictionary*) defaultPropertyValues
 {

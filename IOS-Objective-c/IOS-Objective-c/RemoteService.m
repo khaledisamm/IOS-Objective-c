@@ -51,12 +51,12 @@
      ];
 }
 
--(void) deleteProfile:(Profile*)profile completion:(void (^)(Profile* profileResp))completionBlock
+-(void) deleteProfile:(NSInteger)profileId completion:(void (^)(id data))completionBlock
 {
     //TODO : submit to server
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     //manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    NSString *url=[NSString stringWithFormat:@"http://192.168.1.2/ios/public/profiles/%ld", (long)profile.id];
+    NSString *url=[NSString stringWithFormat:@"http://192.168.1.2/ios/public/profiles/%ld", (long)profileId];
     [manager DELETE:url parameters:NULL
             success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
@@ -67,19 +67,19 @@
      }];
 }
 
--(void) updateProfile:(Profile*)profile completion:(void (^)(Profile* profileResp))completionBlock
+-(void) updateProfile:(Profile*)profile callback:(void (^)(id data))completionBlock
 {
-    //TODO : submit to server
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     NSString *url=[NSString stringWithFormat:@"http://192.168.1.2/ios/public/profiles/%ld", (long)profile.id];
-    [manager PUT:url parameters:NULL
-            success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [manager PUT:url parameters:[profile toDictionary]
+          success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          completionBlock(responseObject);
      }
-            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                NSLog(@"Error: %@", error);
-            }];
+          failure:
+     ^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"Error: %@", error);
+     }];
 }
 @end

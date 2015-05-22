@@ -17,8 +17,6 @@
 
 @implementation DisplayProfileTableViewController
 
-
-NSInteger num = 10;
 id profiles;
 
 - (void)viewDidLoad {
@@ -28,10 +26,13 @@ id profiles;
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    [self getProfiles];
+}
+-(void) getProfiles
+{
     RemoteService *service = [[RemoteService alloc] init];
     [service displayProfile:^(id data) {
         profiles = data;
-        num = [data count];
         [self.tableView reloadData];
     }];
 }
@@ -52,7 +53,7 @@ id profiles;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-    return num;
+    return [profiles count];
 }
 
 
@@ -71,22 +72,13 @@ id profiles;
         UpdateProfileViewController *update = [segue destinationViewController];
         Profile* profileData = [profiles objectAtIndex:indexPath.row];
         
-        update.firstNameUp = [profileData valueForKey:@"firstName"];
-        update.lastNameUp = [profileData valueForKey:@"lastName"];
-        update.birthDayUp = [profileData valueForKey:@"birthDay"];
-        update.sexUp = [profileData valueForKey:@"sex"];
-        NSLog(@"%@",update.sexUp);
+        update.profileUp = profileData;
     }
 }
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    //NSLog(@"I Tapped:%i",indexPath.row);
     [self performSegueWithIdentifier:@"update" sender:indexPath];
-
-    Profile* profileData = [profiles objectAtIndex:indexPath.row];
-    NSLog(@"%@",[profileData valueForKey:@"firstName"]);
-    
 }
 
 
@@ -100,15 +92,18 @@ return YES;
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSLog(@"%@", [profiles objectAtIndex:indexPath.row]);
         
         // Delete the row from the data source
+        
         Profile* profile = [profiles objectAtIndex:indexPath.row];
-        NSLog(@"%@", profile);
         RemoteService *delete = [[RemoteService alloc] init];
-        [delete deleteProfile:profile completion:NULL];
-        [self.tableView reloadData];
-        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [delete deleteProfile:[[profile valueForKey:@"id"]intValue] completion:^(id data) {
+            if (data) {
+                [self getProfiles];
+                
+            }
+        }];
+        
         
        
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {

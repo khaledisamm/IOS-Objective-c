@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Profile.h"
 
 @interface UpdateProfileViewController : UIViewController
 
@@ -15,12 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *birthDay;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *sex;
 
-
-
-@property (nonatomic, weak) NSString *firstNameUp;
-@property (nonatomic, weak) NSString *lastNameUp;
-@property (nonatomic, weak) NSData *birthDayUp;
-@property (nonatomic, weak) NSString *sexUp;
+@property (nonatomic, weak) Profile *profileUp;
 
 
 - (IBAction)changeText:(id)sender;
