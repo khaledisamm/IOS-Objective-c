@@ -21,7 +21,8 @@
     [manager POST:@"http://192.168.1.2/ios/public/profiles" parameters:[profile toDictionary]
           success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         //[ProfileService saveProfile:profile];
+         profile.id = [responseObject[@"id"] intValue];
+         [ProfileService saveProfile:profile];
          completionBlock(responseObject);
      }
           failure:
@@ -54,7 +55,7 @@
 }
 
 -(void) deleteProfile:(NSInteger)profileId completion:(void (^)(id data))completionBlock
-{
+{   
     //TODO : submit to server
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     //manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -62,6 +63,7 @@
     [manager DELETE:url parameters:NULL
             success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
+         
          [ProfileService deleteProfile:profileId];
          completionBlock(responseObject);
      }

@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *birthDay;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *sex;
 
-@property (nonatomic, weak) Profile *profileUp;
+@property (nonatomic, strong) Profile *profileUp;
 
 
 - (IBAction)changeText:(id)sender;

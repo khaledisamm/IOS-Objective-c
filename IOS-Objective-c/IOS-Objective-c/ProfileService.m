@@ -11,20 +11,29 @@
 
 @implementation ProfileService
 
++(NSUInteger) countProfiles
+{
+    RLMResults* results = [Profile allObjects];
+    return [results count];
+}
+
 +(void) saveProfile:(Profile*)profile
 {
     
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
-    [Profile createOrUpdateInRealm:realm withObject:profile];
+    [Profile createOrUpdateInRealm:realm withValue:profile];
     [realm commitWriteTransaction];
 }
 
-+(void) deleteProfile:(NSInteger*)idProfile
++(void) deleteProfile:(NSInteger)idProfile
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
-    RLMResults *profile = [Profile objectsWhere:@"id = %@", idProfile];
+  //  NSLog(@"%d",idProfile);
+  //  NSLog(@"result:%@",[Profile objectsWhere:@"id == %d", idProfile].firstObject);
+    Profile *profile = [Profile objectsWhere:@"id == %d", idProfile].firstObject;
+    
     [realm deleteObject:profile];
     [realm commitWriteTransaction];
 

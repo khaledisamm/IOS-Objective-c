@@ -42,33 +42,77 @@ NSString *sexVar = @"male";
     if (sex.selectedSegmentIndex == 1) {
         sexVar = @"female";
     }
+
 }
 
-- (IBAction)signIn:(id)sender {
-    Profile *profile = [[Profile alloc] init];
 
-    profile.firstnameInput = firstName.text;
-    profile.lastnameInput = lastName.text;
+- (IBAction)signIn:(id)sender {
+    Profile *profile = [Profile new];
+
+    profile.firstName = firstName.text;
+    profile.lastName = lastName.text;
     
     NSDate *birthDayInput = [birthDay date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
-    profile.DateInput =[formatter stringFromDate:birthDayInput];
+    profile.birthDay =[formatter stringFromDate:birthDayInput];
     
-    profile.sexInput = sexVar;
-    NSLog(@"%@",profile.sexInput);
-    MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = NSLocalizedString(@"submit.in.progress", nil);
+    profile.sex = sexVar;
     
-    RemoteService *remoteService = [[RemoteService alloc] init];
+    NSDate* now = [NSDate date];
+    NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
+                                       components:NSYearCalendarUnit
+                                       fromDate:birthDayInput
+                                       toDate:now
+                                       options:0];
+    NSInteger age = [ageComponents year];
     
-    [remoteService submitProfile:profile callback:^(id data) {
-        [hud hide:YES];
-        if(data)
-            [self.navigationController popViewControllerAnimated:YES];
-
-    }];
-
+    if (age<5) {
+        UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Erreur"
+                                                         message:@"Age is down 5 year"
+                                                        delegate:self
+                                               cancelButtonTitle:nil
+                                               otherButtonTitles: nil];
+        [alert addButtonWithTitle:@"OK"];
+        [alert show];
+    }else
+    
+    if (!firstName.text.length && !lastName.text.length) {
+        UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Erreur"
+                                                         message:@"FirstName is empty & LastName is empty"
+                                                        delegate:self
+                                               cancelButtonTitle:nil
+                                               otherButtonTitles: nil];
+        [alert addButtonWithTitle:@"OK"];
+        [alert show];
+    }else if (!firstName.text.length) {
+        UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Erreur"
+                                                         message:@"FirstName is empty"
+                                                        delegate:self
+                                               cancelButtonTitle:nil
+                                               otherButtonTitles: nil];
+        [alert addButtonWithTitle:@"OK"];
+        [alert show];
+    } else if (!lastName.text.length) {
+        UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Erreur"
+                                                         message:@"LastName is empty"
+                                                        delegate:self
+                                               cancelButtonTitle:nil
+                                               otherButtonTitles: nil];
+        [alert addButtonWithTitle:@"OK"];
+        [alert show];
+    } else {
+        MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.labelText = NSLocalizedString(@"submit.in.progress", nil);
+        
+        RemoteService *remoteService = [[RemoteService alloc] init];
+        
+        [remoteService submitProfile:profile callback:^(id data) {
+            [hud hide:YES];
+            if(data)
+                [self.navigationController popViewControllerAnimated:YES];
+        }];
+    }
 }
 
 @end

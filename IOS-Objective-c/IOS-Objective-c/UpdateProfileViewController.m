@@ -24,7 +24,7 @@ NSString *sexVal;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    
     firstName.text = [profileUp valueForKey:@"firstName"];
     lastName.text = [profileUp valueForKey:@"lastName"];
 
@@ -66,19 +66,23 @@ NSString *sexVal;
     if (sex.selectedSegmentIndex == 1) {
         sexVal = @"female";
     }
+    NSLog(@"id=%@",self.profileUp);
 }
 
 - (IBAction)update:(id)sender {
     
     Profile *profile = [[Profile alloc] init];
+    NSLog(@"id=%@",profileUp);
     profile.id=[[profileUp valueForKey:@"id"] intValue];
-    profile.firstnameInput=firstName.text;
-    profile.lastnameInput = lastName.text;
+    profile.firstName=firstName.text;
+    profile.lastName = lastName.text;
+    
     NSDate *birthDayInput = [birthDay date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
-    profile.DateInput =[formatter stringFromDate:birthDayInput];
-    profile.sexInput = sexVal;
+    profile.birthDay =[formatter stringFromDate:birthDayInput];
+    
+    profile.sex = sexVal;
 
     MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = NSLocalizedString(@"submit.in.progress", nil);

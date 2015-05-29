@@ -10,7 +10,7 @@
 
 @implementation Profile
 
-@synthesize firstnameInput, lastnameInput, DateInput, sexInput;
+//@synthesize firstnameInput, lastnameInput, DateInput, sexInput;
 
 +(NSString*) primaryKey
 {
@@ -28,10 +28,10 @@
 - (NSDictionary *) toDictionary
 {
     return @ {
-        @"firstName" :self.firstnameInput,
-        @"lastName" :self.lastnameInput,
-        @"birthDay" :self.DateInput,
-        @"sex" :self.sexInput
+        @"firstName"    :self.firstName,
+        @"lastName"     :self.lastName,
+        @"birthDay"     :self.birthDay,
+        @"sex"          :self.sex,
     };
 }
 

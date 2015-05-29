@@ -12,10 +12,10 @@
 @interface Profile : RLMObject
 
 @property NSInteger id;
-@property NSString* firstnameInput;
-@property NSString* lastnameInput;
-@property NSString* sexInput;
-@property NSString* DateInput;
+@property NSString* firstName;
+@property NSString* lastName;
+@property NSString* sex;
+@property NSString* birthDay;
 
 - (NSDictionary *) toDictionary;
 

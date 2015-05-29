@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <Realm/Realm.h>
+
+
 @class Profile;
 @interface ProfileService : NSObject
 
 +(void) saveProfile:(Profile*)profile;
-+(void) deleteProfile:(NSInteger*)idProfile;
++(void) deleteProfile:(NSInteger)idProfile;
 +(RLMResults*) displayProfile;
++(NSUInteger) countProfiles;
 @end

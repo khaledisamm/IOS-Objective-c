@@ -18,8 +18,7 @@
 
 @implementation DisplayProfileTableViewController
 
-id profiles;
-
+RLMResults *profiles;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -27,23 +26,25 @@ id profiles;
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    [self getProfiles];
+    //[self getProfiles];
+    [self.tableView reloadData];
 }
--(void) getProfiles
-{
-    RemoteService *service = [[RemoteService alloc] init];
-    [service displayProfile:^(id data) {
-        profiles = data;
-        [self.tableView reloadData];
-    }];
-}
+
+//-(void) getProfiles
+//{
+//    RemoteService *service = [[RemoteService alloc] init];
+//    [service displayProfile:^(id data) {
+//        profiles = data;
+//        [self.tableView reloadData];
+//    }];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
+    profiles =[ProfileService displayProfile];
 
-#pragma mark - Table view data source
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
@@ -54,27 +55,16 @@ id profiles;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-    return [profiles count];
+    return [ProfileService countProfiles];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    RLMResults *profile =[ProfileService displayProfile];
-    
-    if ([profile count]) {
-        id name = [profile valueForKey:@"firstName"];
-        cell.textLabel.text = [name objectAtIndex:indexPath.row];
-        NSLog(@"Realm");
-    }
-    else{
-        id name = [profiles valueForKey:@"firstName"];
-        cell.textLabel.text = [name objectAtIndex:indexPath.row];
-        NSLog(@"Serveur");
-    }
-    
-    
+    profiles =[ProfileService displayProfile];
+    id name = [profiles valueForKey:@"firstName"];
+    cell.textLabel.text = [name objectAtIndex:indexPath.row];
+
     return cell;
 }
 
@@ -85,7 +75,7 @@ id profiles;
         
         UpdateProfileViewController *update = [segue destinationViewController];
         Profile* profileData = [profiles objectAtIndex:indexPath.row];
-        
+        NSLog(@"profile=%@",profileData);
         update.profileUp = profileData;
     }
 }
@@ -101,8 +91,6 @@ id profiles;
 return YES;
 }
 
-
-
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -113,7 +101,9 @@ return YES;
         RemoteService *delete = [[RemoteService alloc] init];
         [delete deleteProfile:[[profile valueForKey:@"id"]intValue] completion:^(id data) {
             if (data) {
-                [self getProfiles];
+                
+                [ProfileService displayProfile];
+                [self.tableView reloadData];
                 
             }
         }];
